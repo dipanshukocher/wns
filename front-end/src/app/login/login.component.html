@@ -1,0 +1,88 @@
+<div class="col-lg-12" class="background-cus">
+    <div class="row w-100 d-flex align-items-center login-container" style="height: 100vh">
+        <div class="col-lg-4 offset-md-4 login-container-inner text-center">
+            <mat-card class="example-card" *ngIf="!is_signup">
+                <mat-progress-bar
+                    *ngIf="loading"
+                    class="example-margin text-center"
+                    [color]="color"
+                    [mode]="mode"
+                    [value]="value"
+                    [bufferValue]="bufferValue"
+                    style="position: absolute;
+                    left: 0;
+                    top: 0px;">
+                </mat-progress-bar>
+                <mat-card-header>
+                    <h1>&nbsp;</h1>
+                    <mat-card-title><h3>Log In</h3></mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <form class="example-form" (ngSubmit)="onSubmit()" #loginForm="ngForm" name="loginForm" novalidate>
+                        <mat-form-field class="example-full-width w-100">
+                            <input matInput type="email" placeholder="Email" #username="ngModel" [(ngModel)]="loginModel.email" name="username" required pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$'>
+                            <mat-error class="form-control-feedback" *ngIf="username.errors && (username.dirty || username.touched)">
+                                <p class="login-error" *ngIf="username.errors.required">Email is required</p>
+                                <p class="login-error" *ngIf="username.errors.pattern">Please enter a valid email address</p>
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width w-100">
+                            <input matInput type="password" placeholder="Password" #password="ngModel" [(ngModel)]="loginModel.password" name="password" required minlength="5">
+                            <mat-error class="form-control-feedback" *ngIf="password.errors && (password.dirty || password.touched)">
+                                <p class="login-error" *ngIf="password.errors.required">Password is required</p>
+                                <p class="login-error" *ngIf="password.errors.minlength">Password must contain at least the 5 character</p>
+                            </mat-error>
+                        </mat-form-field>
+
+                        <h6 *ngIf="loginError" class="login-error">Something went wrong !</h6>
+                        <h6 *ngIf="loginCredentialsError" class="login-error text-capitalize">{{loginCredentialsErrorMessage.error.message}}</h6>
+                        <div class="form-group text-center">
+                            <button [disabled]="!loginForm.form.valid" matInput mat-raised-button color="primary" class="text-uppercase">
+                                <span>sign in</span> 
+                            </button>
+                        </div>
+                    </form>
+                </mat-card-content>
+                <p>To Signup Click <a href="javascript:void(0)" (click)="toggleLoginSignUp()">here</a></p>
+            </mat-card>
+            <mat-card *ngIf="is_signup">
+                <mat-card-header>
+                    <h1>&nbsp;</h1>
+                    <mat-card-title><h3>Sign Up</h3></mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <form (ngSubmit)="signUpUser.form.valid && createUser()" #signUpUser="ngForm" novalidate>
+                        <mat-form-field class="example-full-width w-100">
+                            <input matInput name="email_address" placeholder="Email Address" type="email" required [(ngModel)]="signup.emailAddress" #emailAddress="ngModel">
+                            <mat-error *ngIf="emailAddress.invalid && (emailAddress.dirty || emailAddress.touched)" class="alert alert-danger">
+                                <div *ngIf="emailAddress.errors.required">Email is required.</div>
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width w-100">
+                            <input matInput name="password" placeholder="Password" type="password" required [(ngModel)]="signup.password" #password="ngModel">
+                            <mat-error *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+                                <div *ngIf="password.errors.required">Password is required.</div>
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width w-100">
+                            <input matInput name="confirm_password" placeholder="Confirm Password" type="password" required [(ngModel)]="signup.confirmPassword" #confirmPassword="ngModel">
+                            <mat-error *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)" class="alert alert-danger">
+                                <div *ngIf="confirmPassword.errors.required">Confirm password not matched with password.</div>
+                            </mat-error>
+                        </mat-form-field>
+
+                        <div class="form-group text-center">
+                            <button [disabled]="!signUpUser.form.valid" matInput mat-raised-button color="primary" class="text-uppercase">
+                                <span>sign up</span> 
+                            </button>
+                        </div>
+                    </form>
+                </mat-card-content>
+                <p>To Signin Click <a href="javascript:void(0)" (click)="toggleLoginSignUp()">here</a></p>
+            </mat-card>
+        </div>
+    </div>
+</div>

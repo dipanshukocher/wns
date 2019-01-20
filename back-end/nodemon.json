@@ -1,0 +1,5 @@
+{
+    "env" : {
+        "JWT_WEB_TOKEN": "secret"
+    }
+}

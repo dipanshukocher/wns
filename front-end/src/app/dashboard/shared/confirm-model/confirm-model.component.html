@@ -1,0 +1,15 @@
+<div class="Add-Fleet-Modal col-lg-12">
+  <div class="row min-height-60">
+    <h4 class="text-left w-100" [innerHtml]="confirmTitle"></h4>
+  </div>
+  <div class="row min-height-125">
+    <h6 class="text-left w-100" [innerHtml]="confirmSubtitle"></h6>
+  </div>
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <button mat-button class="text-uppercase mr-2" (click)="closeModal()" [innerHtml]="closeButtonTitle"></button> &nbsp;
+      <button mat-raised-button class="text-uppercase" color="primary" (click)="confirmOk()" [innerHtml]="actionButtonTitle"></button>
+    </div>
+  </div>
+</div>
+  

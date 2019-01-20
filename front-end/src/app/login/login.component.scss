@@ -1,0 +1,16 @@
+ @import "./../../styles.scss";
+ 
+ .login-container{
+      position: relative;
+      display: flex;
+      .login-container-inner{
+          width: 28%;
+          margin: auto;
+      }
+      
+  }
+  
+  
+.background-cus {
+    // background-color: map-get($color, pink);
+}

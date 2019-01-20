@@ -1,0 +1,51 @@
+<div class="container-fluid">
+  <section class="row">
+    <div class="header-main-wrapper w-100 ">
+      <mat-toolbar color="primary" class="mat-elevation-z6">
+        <mat-toolbar-row class="container-fluid">
+          <div class="rta-nav d-flex justify-content-between w-100">
+            <span class="mt-1">Dashboard</span>
+            <span class="example-spacer">
+              <span class="user-name mt-2">{{email}}</span>
+              <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item disabled>Profile</button>
+                <button mat-menu-item (click)="userLogout()">Logout</button>
+              </mat-menu>
+            </span>
+          </div>
+        </mat-toolbar-row>
+      </mat-toolbar>
+      <div class="main-menu-nav mat-elevation-z2">
+        <div class="container-fluid">
+          <mat-nav-list class="d-flex mt-0 pt-0">
+            <mat-list-item class="d-flex justify-content-center" *ngFor="let item of mainMenu" routerLinkActive="active">
+              <div>
+                <a href="javascript:void(0)" routerLink="{{item.route}}" routerLinkActive="active">{{item.name}}</a>
+                <button mat-icon-button [matMenuTriggerFor]="subMenu" *ngIf="item.childs.length > 0">
+                  <mat-icon>keyboard_arrow_down</mat-icon>
+                </button>
+              </div>
+              <mat-menu #subMenu="matMenu">
+                <button mat-menu-item *ngFor="let dropList of item.childs">
+                  <span>{{dropList.subName}}</span>
+                </button>
+              </mat-menu>
+            </mat-list-item>
+          </mat-nav-list>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="row">
+    <div class="body-main-wrapper w-100">
+      <mat-drawer-container class="example-container" autosize>
+        <div class="col-lg-12">
+          <router-outlet></router-outlet>
+        </div>
+      </mat-drawer-container>
+    </div>
+  </section>
+</div>

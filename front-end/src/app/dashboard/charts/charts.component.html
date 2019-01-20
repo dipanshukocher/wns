@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row mt-5 mb-5">
+    <div class="col-lg-6">
+      <h4>Bar Chart</h4>
+      <mat-card class="mat-elevation-z8">
+        <nvd3 [options]="options" [data]="data"></nvd3>
+      </mat-card>
+    </div>
+    <div class="col-lg-6 mb-5">
+      <h4>Pie/Donut Chart</h4>
+      <mat-card class="mat-elevation-z8">
+        <nvd3 [options]="pieChart" [data]="pieChartData"></nvd3>
+        <p><mat-checkbox class="example-margin" (change)="updateDonut(isDonut)">Pie Chart</mat-checkbox></p>
+      </mat-card>
+    </div>
+  </div>
+</div>
